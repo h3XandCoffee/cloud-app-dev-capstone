@@ -1,11 +1,11 @@
   applications:
-  - name: djangoapp
+  - name: CloudAppCapstoneDjango
     routes:
-      - route: $HOST.$DOMAIN
+      - route: radu.apic.eu-gb.mybluemix.net
     memory: 128M
     buildpack: python_buildpack
-  - name: djangoapp-nginx
+  - name: CloudAppCapstoneNginx
     routes:
-      - route: $HOST.$DOMAIN/static
+      - route: radu.apic.eu-gb.mybluemix.net/static
     memory: 128M
     buildpack: staticfile_buildpack
