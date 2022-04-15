@@ -10,21 +10,25 @@ urlpatterns = [
     # name the URL
 
     # the 'static' template
-    path(route='static', view=views.static, name='static'),
+    path('static/', view=views.static, name='static'),
 
     # path for about view
-    path(route='about', view=views.about, name='about'),
+    path('about/', view=views.about, name='about'),
 
     # path for contact us view
-    path(route='contact', view=views.contact, name='contact'),
+    path('contact/', view=views.contact, name='contact'),
 
     # path for registration
+    path('registration/', views.registration_request, name='registration'),
 
     # path for login
+    path('login/', views.login_request, name='login'),
 
     # path for logout
+    path('logout/', views.logout_request, name='logout'),
 
-    path(route='', view=views.get_dealerships, name='index'),
+    # path for index
+    path('', view=views.get_dealerships, name='index'),
 
     # path for dealer reviews view
 
