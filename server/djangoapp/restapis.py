@@ -84,29 +84,26 @@ def get_dealer_by_id(url, **kwargs):
     print (kwargs)
     # Call get_request with a URL parameter
     json_result = get_request(url, dealership=kwargs['dealer_id'])
+    print (json_result)
     if json_result:
         # Get the row list in JSON as dealers
         dealers = json_result["docs"]
         # For each dealer object
-        for dealer_doc in dealers:
-            # Get its content in `doc` object
-            # dealer_doc = dealer["doc"]
-            # Create a CarDealer object with values in `doc` object
-            dealer_obj = CarDealer(
-                id=dealer_doc["id"], 
-                city=dealer_doc["city"],
-                state=dealer_doc["state"],
-                st=dealer_doc["st"],
-                address=dealer_doc["address"],
-                zip=dealer_doc["zip"],
-                lat=dealer_doc["lat"], 
-                long=dealer_doc["long"],
-                full_name=dealer_doc["full_name"],
-                short_name=dealer_doc["short_name"],
-            )
-            results.append(dealer_obj)
-
-    return results
+        dealer_doc = dealers[0]
+        # Create a CarDealer object with values in `doc` object
+        dealer_obj = CarDealer(
+            id=dealer_doc["id"], 
+            city=dealer_doc["city"],
+            state=dealer_doc["state"],
+            st=dealer_doc["st"],
+            address=dealer_doc["address"],
+            zip=dealer_doc["zip"],
+            lat=dealer_doc["lat"], 
+            long=dealer_doc["long"],
+            full_name=dealer_doc["full_name"],
+            short_name=dealer_doc["short_name"],
+        )
+    return dealer_obj
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
@@ -155,5 +152,5 @@ def analyze_review_sentiments(text):
     # params["api_key"] = "LpCAomx-5h6kk6KazkDgz5t0M2Gpe-OEHEsnH8WrKeNF"
     
     response = get_request(url, params=params, api_key="LpCAomx-5h6kk6KazkDgz5t0M2Gpe-OEHEsnH8WrKeNF")
-    print (response)
+    # print (response)
     return response
